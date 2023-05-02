@@ -1,25 +1,51 @@
 <?php
-require_once __DIR__ . "/../Template.php";
 
-Template::header("Home");
-?>
+class Template
+{
+    public static function header($title)
+    {
+        $home_path = getHomePath();
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
 
-<h1>Welcome home: <?= $this->home ?></h1>
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title><?= $title ?> - Multitier Shop</title>
 
-<p>
-    We are delighted to have you visit our website. Here you will find a selection of products and services that we provide.
-    From our high quality apparel and accessories to our professional services, we are committed to providing our customers
-    with only the best. Whether you are looking for a new wardrobe or need help with a project, we have the perfect solution for you.
-</p>
+            <link rel="stylesheet" href="<?= $home_path ?>/assets/css/style.css">
 
-<p>
-    Take a look around and explore our selection of products and services. We have something for everyone, from fashion-forward
-    apparel to creative services. We are confident that you will find something that you love.
+            <script src="<?= $home_path ?>/assets/js/script.js"></script>
+        </head>
 
-</p>
+        <body>
+            <header style="background-image: url('<?= $home_path ?>/assets/img/header-bg.jpg')">
+                <h1><?= $title; ?></h1>
+            </header>
 
-<p>
-    Thank you for visiting our website. We look forward to serving you and helping you find the perfect product or service that you need.
-</p>
+            <nav>
+                <a href="<?= $home_path ?>">Start</a>
+                <a href="<?= $home_path ?>/customers">Customers</a>
+                <a href="<?= $home_path ?>/articles">Articles</a>
+            </nav>
 
-<?php Template::footer(); ?>
+            <main>
+
+        <?php }
+
+
+
+    public static function footer()
+    {
+        ?>
+        </main>
+            <footer>
+                Copyright 2025
+            </footer>
+        </body>
+
+        </html>
+<?php }
+}
