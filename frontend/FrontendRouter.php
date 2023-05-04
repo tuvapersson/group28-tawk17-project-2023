@@ -9,7 +9,7 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 require_once __DIR__ . "/functions.php";
 
 // Load controllers
-require_once __DIR__ . "/controllers/CustomerController.php";
+require_once __DIR__ . "/controllers/UserController.php";
 require_once __DIR__ . "/controllers/HomeController.php";
 require_once __DIR__ . "/controllers/AssetsController.php";
 require_once __DIR__ . "/controllers/ArticleController.php";
@@ -28,10 +28,10 @@ class FrontendRouter
         // Available routes
         // Add to this if you need to add any route to the API
         $this->routes = [
-            // Whenever someone calls "home/Customers" we 
+            // Whenever someone calls "home/users" we 
             // will load the CustomerPages class
             "home" => "HomeController",
-            "customers" => "CustomersController",
+            "users" => "UsersController",
             "assets" => "AssetsController",
             "articles" => "ArticleController"
         ];
@@ -53,7 +53,7 @@ class FrontendRouter
         $request_info = [];
 
         if ($this->path_count >= 2 && $this->path_parts[1] != "") {
-            // Get the requested resource from the URL such as "Customers" or "Products"
+            // Get the requested resource from the URL such as "users" or "Products"
             $resource = strtolower($this->path_parts[1]);
         }
 
