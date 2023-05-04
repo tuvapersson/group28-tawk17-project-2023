@@ -24,7 +24,7 @@ class Database
 
         if (!$this->conn) {
             die("Error connection to db!");
-        }
+        }   
     }
 
     // Retrieves all rows from the specified 
