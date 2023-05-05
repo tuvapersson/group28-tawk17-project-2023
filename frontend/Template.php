@@ -28,7 +28,6 @@ class Template
             <nav>
                 <a href="<?= $home_path ?>">Start</a>
                 <a href="<?= $home_path ?>/users">Users</a>
-                <a href="<?= $home_path ?>/articles">Articles</a>
             </nav>
 
             <main>

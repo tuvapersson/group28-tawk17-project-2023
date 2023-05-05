@@ -60,7 +60,7 @@ class UsersDatabase extends Database
         $query = "UPDATE users SET user_name=?, password=?, pt_id=? WHERE user_id=?;";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("sssii", $user->user_name, $user->password, $role, $user->pt_id, $user_id);
+        $stmt->bind_param("ssii", $user->user_name, $user->password, $user->pt_id, $user_id);
 
         $success = $stmt->execute();
 

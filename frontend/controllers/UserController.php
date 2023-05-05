@@ -7,6 +7,7 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 
 require_once __DIR__ . "/../ControllerBase.php";
 require_once __DIR__ . "/../../business-logic/UsersService.php";
+require_once __DIR__ . "/../../business-logic/ActivitiesService.php";
 
 // Class for handling requests to "home/User"
 
@@ -73,9 +74,13 @@ class UsersController extends ControllerBase
     {
         // Get the user with the ID from the URL
         $user = $this->getUser();
+        $activity = ActivitiesService::getActivityByUserId($user->user_id);
 
-        // $this->model is used for sending data to the view
-        $this->model = $user;
+        // // $this->model is used for sending data to the view
+        // $this->model = $user;
+
+        $this->model["user"] = $user;
+        $this->model["activity"] = $activity;
 
         // Shows the view file users/single.php
         $this->viewPage("users/single");
@@ -90,7 +95,8 @@ class UsersController extends ControllerBase
         $user = $this->getUser();
 
         // $this->model is used for sending data to the view
-        $this->model = $user;
+        $this->model["user"] = $user;
+        $this->model["activity"] = $activity;
 
         // Shows the view file users/edit.php
         $this->viewPage("users/edit");
@@ -113,6 +119,7 @@ class UsersController extends ControllerBase
         // Get the user with the specified ID
         $id = $this->path_parts[2];
         $user = UsersService::getUserById($id);
+        $activity = ActivitiesService::getActivityByUserId($id);
 
         // Show not found if user doesn't exist
         if ($user == null) {
@@ -187,7 +194,6 @@ class UsersController extends ControllerBase
         // Get updated properties from the body
         $user->user_name = $this->body["user_name"];
         $user->password = $this->body["password"];
-        $user->role = $this->body["role"];
         $user->pt_id = $this->body["pt_id"];
 
         // Update the user
