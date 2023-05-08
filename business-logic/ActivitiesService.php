@@ -29,7 +29,7 @@ class ActivitiesService{
     public static function getActivityByUserId($id){
         $activities_database = new ActivitiesDatabase();
 
-        $activities = $activities_database->getAll($id);
+        $activities = $activities_database->getByUserId($id);
 
         // If you need to remove or hide data that shouldn't
         // be shown in the API response you can do that here
@@ -99,6 +99,21 @@ class ActivitiesService{
         $success = $activities_database->deleteById($activity_id);
 
         return $success;
+    }
+
+    /////////ADDED ///////////////
+    public static function getActivitiesByUserId(){
+        $activities_database = new ActivitiesDatabase();
+
+        $activities = $activities_database->getByUserId();
+
+        // If you need to remove or hide data that shouldn't
+        // be shown in the API response you can do that here
+        // An example of data to hide is activities password hash 
+        // or other secret/sensitive data that shouldn't be 
+        // exposed to activities calling the API
+
+        return $activities;
     }
 }
 
