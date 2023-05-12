@@ -167,7 +167,7 @@ class UsersController extends ControllerBase
 
         // Get updated properties from the body
         $user->user_name = $this->body["user_name"];
-        $user->password_hash = $this->body["password_hash"];
+        $user->password_hash = $this->body["password"];
         $user->role = $this->body["role"];
         $user->pt_id = $this->body["pt_id"];
 

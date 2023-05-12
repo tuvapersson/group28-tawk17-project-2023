@@ -50,8 +50,8 @@ class AuthAPI extends RestAPI
     {
         $user = new UserModel();
 
-        $user->username = $this->body["username"];
-        $user->user_role = "user"; // hard code all new users to regular "user" role
+        $user->user_name = $this->body["user_name"];
+        $user->role = "Member"; // hard code all new users to regular "user" role
         $password = $this->body["password"];
 
         $success = AuthService::registerUser($user, $password);
@@ -67,10 +67,10 @@ class AuthAPI extends RestAPI
 
     private function login()
     {
-        $username = $this->body["username"];
-        $test_password = $this->body["password"];
+        $user_name = $this->body["user_name"];
+        $test_password = $this->body["password_hash"];
 
-        $user = AuthService::authenticateUser($username, $test_password);
+        $user = AuthService::authenticateUser($user_name, $test_password);
 
         if($user == false){
             $this->unauthorized();

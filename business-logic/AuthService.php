@@ -17,7 +17,7 @@ class AuthService
     {
         $users_database = new UsersDatabase();
 
-        $existing_user = $users_database->getByUsername($user->username);
+        $existing_user = $users_database->getByUsername($user->user_name);
 
         // Check if user exists
         if ($existing_user) {
@@ -38,11 +38,11 @@ class AuthService
     }
 
 
-    public static function authenticateUser($username, $test_password)
+    public static function authenticateUser($user_name, $test_password)
     {
         $users_database = new UsersDatabase();
 
-        $user = $users_database->getByUsernameWithPassword($username);
+        $user = $users_database->getByUsernameWithPassword($user_name);
 
         // Check if user exists
         if (!$user) {
@@ -84,8 +84,9 @@ class AuthService
 
         $payload = json_encode([
             "user_id" => $user->user_id,
-            "username" => $user->username,
-            "user_role" => $user->user_role,
+            "user_name" => $user->user_name,
+            "role" => $user->role,
+            "pt_id" => $user->pt_id,
             "iss" => APPLICATION_NAME,
             "aud" => APPLICATION_NAME,
             "exp" => time() + 3600, // set to expire in 1 hour

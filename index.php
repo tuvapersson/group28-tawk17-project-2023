@@ -26,9 +26,7 @@ if($base_path == "api"){
     $api->handleRequest();
 
 }
-// If the URL path starts with "home", load the frontend
 else if($base_path == "home"){
-
     // Handle requests using the frontend router
     $frontend = new FrontendRouter($path_parts, $query_params);
     $frontend->handleRequest();

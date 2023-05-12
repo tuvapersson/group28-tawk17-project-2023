@@ -17,9 +17,9 @@ class UsersDatabase extends Database
 
     // Get one user by using the inherited function getOneRowByIdFromTable
     // Never send the password hash unless needed for authentication
-    public function getByUsername($username)
+    public function getByUsername($user_name)
     {
-        $user = $this->getByUsernameWithPassword($username);
+        $user = $this->getByUsernameWithPassword($user_name);
 
         // Never send the password hash unless needed for authentication
         unset($user->password_hash);
@@ -30,16 +30,16 @@ class UsersDatabase extends Database
 
     // Get one user by using the inherited function getOneRowByIdFromTable
     // Never send the password hash unless needed for authentication
-    public function getByUsernameWithPassword($username)
+    public function getByUsernameWithPassword($user_name)
     {
-        // Define SQL query to retrieve user data by username
-        $query = "SELECT * FROM users WHERE username = ?";
+        // Define SQL query to retrieve user data by user_name
+        $query = "SELECT * FROM users WHERE user_name = ?";
 
         // Prepare the query statement
         $stmt = $this->conn->prepare($query);
 
-        // Bind the username parameter to the prepared statement
-        $stmt->bind_param("s", $username);
+        // Bind the user_name parameter to the prepared statement
+        $stmt->bind_param("s", $user_name);
 
         // Execute the query
         $stmt->execute();

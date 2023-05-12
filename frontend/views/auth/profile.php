@@ -5,26 +5,26 @@ Template::header("Profile");
 ?>
 
 <p>
-    Logged in as <b><?= $this->user->username ?></b>
+    Logged in as <b><?= $this->user->user_name ?></b>
 </p>
 
-<?php if ($this->user->user_role === "admin") : ?>
+<?php if ($this->user->role === "admin") : ?>
     <p>(admin user)</p>
 <?php endif; ?>
 
 <hr>
 
-<h2>Set profile picture</h2>
+<!-- <h2>Set profile picture</h2> -->
 
-<?php if ($this->user->profile_pic_url) : ?>
-    <img src="<?= $this->home . $this->user->profile_pic_url?>" alt="" width="100">
-<?php endif; ?>
+<?//php if ($this->user->profile_pic_url) : ?>
+    <!-- <img src="<? //= $this->home . $this->user->profile_pic_url?>" alt="" width="100"> -->
+<?//php endif; ?>
 
 
-<form action="<?= $this->home ?>/auth/profile_pic" method="post" enctype="multipart/form-data">
+<!-- <form action="<?= //$this->home ?>/auth/profile_pic" method="post" enctype="multipart/form-data">
     <input type="file" name="profile_pic"> <br>
     <input type="submit" value="Save" class="btn">
-</form>
+</form> -->
 
 <hr>
 
