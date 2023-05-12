@@ -11,19 +11,19 @@ class ActivitiesService{
 
     // Get one activity by creating a database object 
     // from data-access layer and calling its getOne function.
-    public static function getActivityById($id){
-        $activities_database = new ActivitiesDatabase();
+    // public static function getActivityById($id){
+    //     $activities_database = new ActivitiesDatabase();
 
-        $activity = $activities_database->getOne($id);
+    //     $activity = $activities_database->getOne($id);
 
-        // If you need to remove or hide data that shouldn't
-        // be shown in the API response you can do that here
-        // An example of data to hide is activities password hash 
-        // or other secret/sensitive data that shouldn't be 
-        // exposed to activities calling the API
+    //     // If you need to remove or hide data that shouldn't
+    //     // be shown in the API response you can do that here
+    //     // An example of data to hide is activities password hash 
+    //     // or other secret/sensitive data that shouldn't be 
+    //     // exposed to activities calling the API
 
-        return $activity;
-    }
+    //     return $activity;
+    // }
 
     //////////////////// ADDED /////////////////////////
     public static function getActivityByUserId($id){

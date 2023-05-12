@@ -43,11 +43,11 @@ class ActivitiesDatabase extends Database
     // Create one by creating a query and using the inherited $this->conn 
     public function insert(ActivityModel $activity)
     {
-        $query = "INSERT INTO activities (activity_name, password, role, pt_id) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO activities (title, date, description, start_value, current_value, user_id) VALUES (?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bind_param("sssi", $activity->activity_name, $activity->password, $activity->role, $activity->pt_id);
+        $stmt->bind_param("ssssi", $activity->title, $activity->date, $activity->description, $activity->start_value, $activity->current_value, $activity->user_id);
 
         $success = $stmt->execute();
 
@@ -57,10 +57,10 @@ class ActivitiesDatabase extends Database
     // Update one by creating a query and using the inherited $this->conn 
     public function updateById($activity_id, ActivityModel $activity)
     {
-        $query = "UPDATE activities SET activity_name=?, password=?, pt_id=? WHERE activity_id=?;";
+        $query = "UPDATE activities SET title=?, date=?, description=?, start_value=?, current_value=? WHERE activity_id=?;";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ssii", $activity->activity_name, $activity->password, $activity->pt_id, $activity_id);
+        $stmt->bind_param("ssssi", $activity->title, $activity->date, $activity->description, $activity->start_value, $activity->current_value, $activity_id);
 
         $success = $stmt->execute();
 
@@ -76,15 +76,6 @@ class ActivitiesDatabase extends Database
     }
 
     public function getByUserId($user_id) {
-        // $result = $this->getAllRowsFromTable($this->table_name);
-
-        // $activities = [];
-
-        // while ($activity = $result->fetch_object("ActivityModel")) {
-        //     $activities[] = $activity;
-        // }
-
-        // return $activities;
 
         $query = "SELECT * FROM activities WHERE user_id = ?";
 

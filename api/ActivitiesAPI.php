@@ -71,21 +71,27 @@ class ActivitiesAPI extends RestAPI
     {
         $activities = ActivitiesService::getActivitiesByUserId();
 
-        $this->sendJson($activities);
-    }
-
-    // Gets one and sends it to the client as JSON
-    private function getById($id)
-    {
-        $activity = ActivitiesService::getActivityById($id);
-
-        if ($activity) {
-            $this->sendJson($activity);
+        // $this->sendJson($activities);
+        if ($activities) {
+            $this->sendJson($activities);
         }
         else {
             $this->notFound();
         }
     }
+
+    // Gets one and sends it to the client as JSON
+    // private function getById($id)
+    // {
+    //     $activity = ActivitiesService::getActivityById($id);
+
+    //     if ($activity) {
+    //         $this->sendJson($activity);
+    //     }
+    //     else {
+    //         $this->notFound();
+    //     }
+    // }
 
     // Gets the contents of the body and saves it as a activity by 
     // inserting it in the database.
