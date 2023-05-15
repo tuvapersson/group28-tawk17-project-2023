@@ -60,8 +60,17 @@ class ActivitiesController extends ControllerBase
     // Gets all activities and shows them in the index view
     private function showAll()
     {
+    
+        $this->requireAuth();
+
+        if ($this->user->user_role === "PT") {
+            $activities = ActivitiesService::getAllActivities();
+        } else {
+            $activities = PurchasesService::getActivityByUser($this->user->user_id);
+        }
+
         // $this->model is used for sending data to the view
-        $this->model = ActivitiesService::getAllActivities();
+        $this->model = $activities;
 
         $this->viewPage("activities/index");
     }
@@ -86,6 +95,7 @@ class ActivitiesController extends ControllerBase
     // Gets one activity and shows the in the edit activity-view
     private function showEditForm()
     {
+        $this->requireAuth(["PT"]);
         // Get the activity with the ID from the URL
         $activity = $this->getActivity();
 
@@ -101,6 +111,7 @@ class ActivitiesController extends ControllerBase
     // Gets one activity and shows the in the edit activity-view
     private function showNewActivityForm()
     {
+        $this->requireAuth();
         // Shows the view file activities/new.php
         $this->viewPage("activities/new");
     }
@@ -110,6 +121,8 @@ class ActivitiesController extends ControllerBase
     // Gets one activity based on the id in the url
     private function getActivity()
     {
+        $this->requireAuth();
+
         // Get the activity with the specified ID
         $id = $this->path_parts[2];
         $activity = ActivitiesService::getActivityById($id);
@@ -156,6 +169,8 @@ class ActivitiesController extends ControllerBase
     // Create a activity with data from the URL and body
     private function createActivity()
     {
+        $this->requireAuth();
+
         $activity = new ActivityModel();
 
         // Get updated properties from the body
@@ -181,6 +196,7 @@ class ActivitiesController extends ControllerBase
     // Update a activity with data from the URL and body
     private function updateActivity()
     {
+        $this->requireAuth("PT");
         $activity = new ActivityModel();
 
         // Get ID from the URL
@@ -209,7 +225,7 @@ class ActivitiesController extends ControllerBase
     // Delete a activity with data from the URL
     private function deleteActivity()
     {
-
+        $this->requireAuth("PT");
         // Get ID from the URL
         $id = $this->path_parts[2];
 

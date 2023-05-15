@@ -47,7 +47,7 @@ class ActivitiesDatabase extends Database
 
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bind_param("ssssi", $activity->title, $activity->date, $activity->description, $activity->start_value, $activity->current_value, $activity->user_id);
+        $stmt->bind_param("sssssi", $activity->title, $activity->date, $activity->description, $activity->start_value, $activity->current_value, $activity->user_id);
 
         $success = $stmt->execute();
 

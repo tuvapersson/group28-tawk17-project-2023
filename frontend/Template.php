@@ -2,10 +2,11 @@
 
 class Template
 {
-    public static function header($title)
+    public static function header($title, $error = false)
     {
         $home_path = getHomePath();
-        ?>
+        $user = getUser();
+?>
         <!DOCTYPE html>
         <html lang="en">
 
@@ -13,7 +14,7 @@ class Template
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title><?= $title ?> - Multitier Shop</title>
+            <title><?= $title ?> - Lorem Fitness</title>
 
             <link rel="stylesheet" href="<?= $home_path ?>/assets/css/style.css">
 
@@ -27,19 +28,31 @@ class Template
 
             <nav>
                 <a href="<?= $home_path ?>">Start</a>
-                <a href="<?= $home_path ?>/users">Users</a>
+
+                <?php if ($user) : ?>
+                    <a href="<?= $home_path ?>/auth/profile">Profile</a>
+                    <a href="<?= $home_path ?>/purchases">Purchases</a>
+                <?php else : ?>
+                    <a href="<?= $home_path ?>/auth/login">Log in</a>
+                <?php endif; ?>
             </nav>
 
             <main>
 
-        <?php }
+                <?php if ($error) : ?>
+                    <div class="error">
+                        <p><?= $error ?></p>
+                    </div>
+                <?php endif; ?>
+
+            <?php }
 
 
 
-    public static function footer()
-    {
-        ?>
-        </main>
+        public static function footer()
+        {
+            ?>
+            </main>
             <footer>
                 Copyright 2025
             </footer>
@@ -47,4 +60,4 @@ class Template
 
         </html>
 <?php }
-}
+    }

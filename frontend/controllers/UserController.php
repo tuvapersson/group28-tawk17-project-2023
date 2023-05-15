@@ -96,7 +96,6 @@ class UsersController extends ControllerBase
 
         // $this->model is used for sending data to the view
         $this->model["user"] = $user;
-        $this->model["activity"] = $activity;
 
         // Shows the view file users/edit.php
         $this->viewPage("users/edit");
