@@ -4,7 +4,7 @@ require_once __DIR__ . "/../../Template.php";
 Template::header("Users");
 ?>
 
-<h1>users</h1>
+<h1>Clients</h1>
 
 <a href="<?= $this->home ?>/users/new">Create new</a>
 

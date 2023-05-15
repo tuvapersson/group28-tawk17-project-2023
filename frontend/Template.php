@@ -29,9 +29,12 @@ class Template
             <nav>
                 <a href="<?= $home_path ?>">Start</a>
 
-                <?php if ($user) : ?>
+                <?php if ($user && $user->role !== "PT") : ?>
                     <a href="<?= $home_path ?>/auth/profile">Profile</a>
                     <a href="<?= $home_path ?>/activities">Activities</a>
+                    <?php elseif ($user && $user->role == "PT") : ?>
+                    <a href="<?= $home_path ?>/auth/profile">Profile</a>
+                    <a href="<?= $home_path ?>/users">Clients</a>
                 <?php else : ?>
                     <a href="<?= $home_path ?>/auth/login">Log in</a>
                 <?php endif; ?>
@@ -54,7 +57,7 @@ class Template
             ?>
             </main>
             <footer>
-                Copyright 2025
+                Copyright 2023
             </footer>
         </body>
 
