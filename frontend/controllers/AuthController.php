@@ -97,10 +97,10 @@ class AuthController extends ControllerBase
 
     private function loginUser()
     {
-        $username = $this->body["username"];
+        $user_name = $this->body["user_name"];
         $test_password = $this->body["password"];
 
-        $user = AuthService::authenticateUser($username, $test_password);
+        $user = AuthService::authenticateUser($user_name, $test_password);
 
         if ($user === false) {
             $this->model["error"] = "Invalid credentials";
@@ -117,8 +117,8 @@ class AuthController extends ControllerBase
     {
         $user = new UserModel();
 
-        $user->username = $this->body["username"];
-        $user->user_role = "user"; // hard code all new users to regular "user" role
+        $user->user_name = $this->body["user_name"];
+        $user->role = "Member"; // hard code all new users to regular "user" role
         $password = $this->body["password"];
         $confirm_password = $this->body["confirm_password"];
 
@@ -127,7 +127,7 @@ class AuthController extends ControllerBase
             $this->viewPage("auth/register");
         }
 
-        $existing_user = UsersService::getUserByUsername($user->username);
+        $existing_user = UsersService::getUserByUsername($user->user_name);
 
         if ($existing_user) {
             $this->model["error"] == "Username already in use";

@@ -68,7 +68,7 @@ class AuthAPI extends RestAPI
     private function login()
     {
         $user_name = $this->body["user_name"];
-        $test_password = $this->body["password_hash"];
+        $test_password = $this->body["password"];
 
         $user = AuthService::authenticateUser($user_name, $test_password);
 

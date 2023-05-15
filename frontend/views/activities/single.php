@@ -30,7 +30,7 @@ Template::header($this->model["activity"]->activity_id);
     <?= $this->model["activity"]->current_value ?>
 </p>
 
-<?php if ($this->user->user_role === "admin") : ?>
+<?php if ($this->user->role === "PT") : ?>
 
     <p>
         <b>User ID: </b>

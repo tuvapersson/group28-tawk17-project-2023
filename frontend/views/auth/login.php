@@ -7,7 +7,7 @@ Template::header("Login", $this->model["error"]);
 <h1>Login</h1>
 
 <form action="<?= $this->home ?>/auth/login" method="post">
-    <input type="text" name="username" placeholder="Username"> <br>
+    <input type="text" name="user_name" placeholder="Username"> <br>
     <input type="password" name="password" placeholder="Password"> <br>
     <input type="submit" value="Log in" class="btn">
 </form>
