@@ -77,20 +77,35 @@ class UsersDatabase extends Database
 
 
     // Get all users by using the inherited function getAllRowsFromTable
-    public function getAll()
+    public function getAllById($user_id)
     {
-        $result = $this->getAllRowsFromTable($this->table_name);
+        // $result = $this->getAllRowsFromTable($this->table_name);
 
-        $users = [];
+        // $users = [];
+
+        // while ($user = $result->fetch_object("UserModel")) {
+        //     $users[] = $user;
+
+        //     // Never send the password hash unless needed for authentication
+        //     unset($user->password_hash);
+        // }
+
+        // return $users;
+
+        $query = "SELECT * FROM users WHERE pt_id = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $users = array(); // Create an empty array to store the user objects
 
         while ($user = $result->fetch_object("UserModel")) {
-            $users[] = $user;
-
-            // Never send the password hash unless needed for authentication
-            unset($user->password_hash);
+            $users[] = $user; // Add each user object to the array
         }
 
-        return $users;
+        return $users; // Return the array of user objects
     }
 
     // Create one by creating a query and using the inherited $this->conn 

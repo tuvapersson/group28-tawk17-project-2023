@@ -35,10 +35,25 @@ class UsersService{
 
     // Get all users by creating a database object 
     // from data-access layer and calling its getAll function.
-    public static function getAllUsers(){
+    // public static function getAllUsers(){
+    //     $users_database = new UsersDatabase();
+
+    //     $users = $users_database->getAll();
+
+    //     // If you need to remove or hide data that shouldn't
+    //     // be shown in the API response you can do that here
+    //     // An example of data to hide is users password hash 
+    //     // or other secret/sensitive data that shouldn't be 
+    //     // exposed to users calling the API
+
+    //     return $users;
+    // }
+
+    
+    public static function getAllUsersbyId($id){
         $users_database = new UsersDatabase();
 
-        $users = $users_database->getAll();
+        $users = $users_database->getAllById($id);
 
         // If you need to remove or hide data that shouldn't
         // be shown in the API response you can do that here

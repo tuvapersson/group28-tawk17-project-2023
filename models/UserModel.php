@@ -14,5 +14,4 @@ class UserModel{
     public $role;
     public $pt_id;
 
-    //birth_year
 }

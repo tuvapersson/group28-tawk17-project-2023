@@ -22,7 +22,7 @@ class UsersAPI extends RestAPI
         // it means that the client is requesting "api/Users" and
         // we should respond by returning a list of all users 
         if ($this->method == "GET" && $this->path_count == 2) {
-            $this->getAll();
+            $this->getUsersById();
         } 
 
         // If there's three parts in the path and the request method is GET
@@ -61,9 +61,15 @@ class UsersAPI extends RestAPI
     }
 
     // Gets all users and sends them to the client as JSON
-    private function getAll()
+    // private function getAll()
+    // {
+    //     $users = UsersService::getAllUsers();
+
+    //     $this->sendJson($users);
+    // }
+    private function getUsersById()
     {
-        $users = UsersService::getAllUsers();
+        $users = UsersService::getAllUsersbyId($this->user->user_id);
 
         $this->sendJson($users);
     }

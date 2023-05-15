@@ -61,8 +61,10 @@ class UsersController extends ControllerBase
     // Gets all users and shows them in the index view
     private function showAll()
     {
+        $this->requireAuth();
         // $this->model is used for sending data to the view
-        $this->model = UsersService::getAllUsers();
+        // $this->model = UsersService::getAllUsers();
+        $this->model = UsersService::getAllUsersbyId($this->user->user_id);
 
         $this->viewPage("users/index");
     }
