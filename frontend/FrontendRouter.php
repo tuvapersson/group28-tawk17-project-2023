@@ -13,6 +13,7 @@ require_once __DIR__ . "/controllers/AuthController.php";
 require_once __DIR__ . "/controllers/UserController.php";
 require_once __DIR__ . "/controllers/HomeController.php";
 require_once __DIR__ . "/controllers/AssetsController.php";
+require_once __DIR__ . "/controllers/ActivityController.php";
 
 // Class for routing all our API requests
 
@@ -34,6 +35,7 @@ class FrontendRouter
             "auth" => "AuthController",
             "users" => "UsersController",
             "assets" => "AssetsController",
+            "activities" => "ActivityController"
         ];
 
         $this->path_parts = $path_parts;

@@ -136,7 +136,6 @@ class AuthService
 
         // Verify that the actual signature matches the expected signature
         if ($encoded_signature !== $expected_signature) {
-            var_dump($encoded_signature, $expected_signature);
             return false;
         }
 

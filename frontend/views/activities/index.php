@@ -10,7 +10,7 @@ Template::header("Activities");
 
 <div class="item-grid">
 
-    <?php foreach ($this->model["activity"] as $activity) : ?>
+    <?php foreach ($this->model as $activity) : ?>
 
         <article class="item">
             <div>
@@ -19,7 +19,7 @@ Template::header("Activities");
             </div>
 
 
-            <?php if ($this->user->user_role === "admin") : ?>
+            <?php if ($this->user->role === "PT") : ?>
 
                 <p>
                     <b>User ID: </b>

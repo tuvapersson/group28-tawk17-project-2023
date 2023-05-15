@@ -63,12 +63,19 @@ class ActivitiesAPI extends RestAPI
     // Gets all activities and sends them to the client as JSON
     private function getAll()
     {
-        $activities = ActivitiesService::getAllActivities();
+        $this->requireAuth();
+        if ($this->user->role === "PT") {
+            $activities = ActivitiesService::getAllActivities();
+        } else {
+            $activities = ActivitiesService::getActivitiesByUser($this->user->user_id);
+        }
+
 
         $this->sendJson($activities);
     }
     private function getByUserId()
     {
+        $this->requireAuth();
         $activities = ActivitiesService::getActivitiesByUserId();
 
         // $this->sendJson($activities);
@@ -81,22 +88,31 @@ class ActivitiesAPI extends RestAPI
     }
 
     // Gets one and sends it to the client as JSON
-    // private function getById($id)
-    // {
-    //     $activity = ActivitiesService::getActivityById($id);
 
-    //     if ($activity) {
-    //         $this->sendJson($activity);
-    //     }
-    //     else {
-    //         $this->notFound();
-    //     }
-    // }
+    private function getById($id)
+    {
+        $this->requireAuth();
+
+        $activity = ActivitiesService::getActivityById($id);
+
+        if (!$activity) {
+            $this->notFound();
+        }
+
+        if ($this->user->role !== "PT" || $activity->user_id !== $this->user->user_id) {
+            $this->forbidden();
+        }
+
+        $this->sendJson($activity);
+    }
+
 
     // Gets the contents of the body and saves it as a activity by 
     // inserting it in the database.
     private function postOne()
     {
+        $this->requireAuth();
+
         $activity = new ActivityModel();
 
         $activity->title = $this->body["title"];
@@ -105,6 +121,16 @@ class ActivitiesAPI extends RestAPI
         $activity->start_value = $this->body["start_value"];
         $activity->current_value = $this->body["current_value"];
         $activity->user_id = $this->body["user_id"];
+
+        // Admins can connect any user to the activity
+        if($this->user->user_role === "PT"){
+            $activity->user_id = $this->body["user_id"];
+        }
+
+        // Regular users can only add activitys to themself
+        else{
+            $activity->user_id = $this->user->user_id;
+        }
 
         $success = ActivitiesService::saveActivity($activity);
 
@@ -120,6 +146,8 @@ class ActivitiesAPI extends RestAPI
     // by sending it to the DB
     private function putOne($id)
     {
+        $this->requireAuth();
+
         $activity = new ActivityModel();
 
         $activity->title = $this->body["title"];
@@ -128,6 +156,16 @@ class ActivitiesAPI extends RestAPI
         $activity->start_value = $this->body["start_value"];
         $activity->current_value = $this->body["current_value"];
         $activity->user_id = $this->body["user_id"];
+
+        // Admins can connect any user to the purchase
+        if($this->user->role === "PT"){
+            $purchase->user_id = $this->body["user_id"];
+        }
+
+        // Regular users can only add purchases to themself
+        else{
+            $purchase->user_id = $this->user->user_id;
+        }
 
         $success = ActivitiesService::updateActivityById($id, $activity);
 
@@ -142,6 +180,9 @@ class ActivitiesAPI extends RestAPI
     // Deletes the activity with the specified ID in the DB
     private function deleteOne($id)
     {
+        // only admins can delete purchases
+        $this->requireAuth();
+
         $activity = ActivitiesService::getActivityById($id);
 
         if($activity == null){

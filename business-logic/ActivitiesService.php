@@ -24,6 +24,13 @@ class ActivitiesService{
 
     //     return $activity;
     // }
+    public static function getActivityById($id){
+        $activities_database = new ActivitiesDatabase();
+
+        $activity = $activities_database->getOne($id);
+
+        return $activity;
+    }
 
     //////////////////// ADDED /////////////////////////
     public static function getActivityByUserId($id){

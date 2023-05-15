@@ -40,6 +40,25 @@ class ActivitiesDatabase extends Database
         return $activities;
     }
 
+    public function getByUserId($user_id) {
+
+        $query = "SELECT * FROM activities WHERE user_id = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $activities = [];
+
+        while ($activity = $result->fetch_object("ActivityModel")) {
+            $activities[] = $activity;
+        }
+        return $activities;
+
+        
+    }
+
     // Create one by creating a query and using the inherited $this->conn 
     public function insert(ActivityModel $activity)
     {
@@ -73,24 +92,5 @@ class ActivitiesDatabase extends Database
         $success = $this->deleteOneRowByIdFromTable($this->table_name, $this->id_name, $activity_id);
 
         return $success;
-    }
-
-    public function getByUserId($user_id) {
-
-        $query = "SELECT * FROM activities WHERE user_id = ?";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-        $activities = [];
-
-        while ($activity = $result->fetch_object("ActivityModel")) {
-            $activities[] = $activity;
-        }
-        return $activities;
-
-        
     }
 }

@@ -10,7 +10,7 @@ require_once __DIR__ . "/../../business-logic/ActivitiesService.php";
 
 // Class for handling requests to "home/Activity"
 
-class ActivitiesController extends ControllerBase
+class ActivityController extends ControllerBase
 {
 
     public function handleRequest()
@@ -63,10 +63,10 @@ class ActivitiesController extends ControllerBase
     
         $this->requireAuth();
 
-        if ($this->user->user_role === "PT") {
+        if ($this->user->role === "PT") {
             $activities = ActivitiesService::getAllActivities();
         } else {
-            $activities = PurchasesService::getActivityByUser($this->user->user_id);
+            $activities = ActivitiesService::getActivityByUserId($this->user->user_id);
         }
 
         // $this->model is used for sending data to the view
@@ -125,7 +125,7 @@ class ActivitiesController extends ControllerBase
 
         // Get the activity with the specified ID
         $id = $this->path_parts[2];
-        $activity = ActivitiesService::getActivityById($id);
+        $activity = ActivitiesService::getActivityByUserId($id);
 
         // Show not found if activity doesn't exist
         if ($activity == null) {
