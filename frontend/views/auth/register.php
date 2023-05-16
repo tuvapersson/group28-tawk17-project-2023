@@ -17,18 +17,17 @@ Template::header("Register user", $this->model["error"]);
     <label for="role">PT</label><br>
     <!-- <input type="number" name="pt_id" placeholder="PT" class="pt-id"> <br> -->
     <label for="pt" class="pt-id">Choose a PT:</label>
+    <?php 
+        var_dump($this->model); ?>
     <select id="pt" name="pt" class="pt-id">
-
-
-    <?php foreach ($this->model as $user) {
-    if ($user->role == "PT") {
+        <?php foreach ($this->model as $user) {
+            if ($user->role == "PT") {
         ?>
         <option value="<?php echo $user->user_id ?>"><?php echo $user->user_name; ?></option>
-<?php
-    }
-} ?>
-
-  </select>
+        <?php
+            }
+        } ?>
+    </select>
     <input type="submit" value="Save" class="btn">
 </form>
 
