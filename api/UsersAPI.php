@@ -36,16 +36,16 @@ class UsersAPI extends RestAPI
         // If theres two parts in the path and the request method is POST 
         // it means that the client is requesting "api/Users" and we
         // should get ths contents of the body and create a user.
-        else if ($this->path_count == 2 && $this->method == "POST") {
-            $this->postOne();
-        }
+        // else if ($this->path_count == 2 && $this->method == "POST") {
+        //     $this->postOne();
+        // }
 
         // If theres two parts in the path and the request method is PUT 
         // it means that the client is requesting "api/Users/{something}" and we
         // should get the contents of the body and update the user.
-        else if ($this->path_count == 3 && $this->method == "PUT") {
-            $this->putOne($this->path_parts[2]);
-        } 
+        // else if ($this->path_count == 3 && $this->method == "PUT") {
+        //     $this->putOne($this->path_parts[2]);
+        // } 
 
         // If theres two parts in the path and the request method is DELETE 
         // it means that the client is requesting "api/Users/{something}" and we
@@ -89,44 +89,44 @@ class UsersAPI extends RestAPI
 
     // Gets the contents of the body and saves it as a user by 
     // inserting it in the database.
-    private function postOne()
-    {
-        $user = new UserModel();
+    // private function postOne()
+    // {
+    //     $user = new UserModel();
 
-        $user->user_name = $this->body["user_name"];
-        $user->password = $this->body["password"];
-        $user->role = $this->body["role"];
-        $user->pt_id = $this->body["pt_id"];
+    //     $user->user_name = $this->body["user_name"];
+    //     $user->password = $this->body["password"];
+    //     $user->role = $this->body["role"];
+    //     $user->pt_id = $this->body["pt_id"];
 
-        $success = UsersService::saveUser($user);
+    //     $success = UsersService::saveUser($user);
 
-        if($success){
-            $this->created();
-        }
-        else{
-            $this->error();
-        }
-    }
+    //     if($success){
+    //         $this->created();
+    //     }
+    //     else{
+    //         $this->error();
+    //     }
+    // }
 
     // Gets the contents of the body and updates the user
     // by sending it to the DB
-    private function putOne($id)
-    {
-        $user = new UserModel();
+    // private function putOne($id)
+    // {
+    //     $user = new UserModel();
 
-        $user->user_name = $this->body["user_name"];
-        $user->password = $this->body["password"];
-        $user->pt_id = $this->body["pt_id"];
+    //     $user->user_name = $this->body["user_name"];
+    //     $user->password = $this->body["password"];
+    //     $user->pt_id = $this->body["pt_id"];
 
-        $success = UsersService::updateUserById($id, $user);
+    //     $success = UsersService::updateUserById($id, $user);
 
-        if($success){
-            $this->ok();
-        }
-        else{
-            $this->error();
-        }
-    }
+    //     if($success){
+    //         $this->ok();
+    //     }
+    //     else{
+    //         $this->error();
+    //     }
+    // }
 
     // Deletes the user with the specified ID in the DB
     private function deleteOne($id)

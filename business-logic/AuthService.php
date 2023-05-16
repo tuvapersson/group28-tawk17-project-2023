@@ -61,18 +61,18 @@ class AuthService
     }
 
 
-    public static function updatePassword($user_id, $password)
-    {
-        $users_database = new UsersDatabase();
+    // public static function updatePassword($user_id, $password)
+    // {
+    //     $users_database = new UsersDatabase();
 
-        // Hash the password securely
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    //     // Hash the password securely
+    //     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insert the user into the database
-        $success = $users_database->updatePasswordById($user_id, $password_hash);
+    //     // Insert the user into the database
+    //     $success = $users_database->updatePasswordById($user_id, $password_hash);
 
-        return $success;
-    }
+    //     return $success;
+    // }
 
     public static function generateJsonWebToken(UserModel $user)
     {

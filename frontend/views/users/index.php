@@ -6,8 +6,6 @@ Template::header("Users");
 
 <h1>Clients</h1>
 
-<a href="<?= $this->home ?>/users/new">Create new</a>
-
 <div class="item-grid">
 
     <?php foreach ($this->model as $user) : ?>
@@ -18,7 +16,6 @@ Template::header("Users");
             </div>
 
             <a href="<?= $this->home ?>/users/<?= $user->user_id ?>">Show</a>
-            <a href="<?= $this->home ?>/users/<?= $user->user_id ?>/edit">Edit</a>
         </article>
 
     <?php endforeach; ?>

@@ -6,10 +6,11 @@ Template::header("Profile");
 
 <p>
     Logged in as <b><?= $this->user->user_name ?></b>
+    PT: <b><?= $this->user->pt_id ?></b>
 </p>
 
-<?php if ($this->user->role === "admin") : ?>
-    <p>(admin user)</p>
+<?php if ($this->user->role === "PT") : ?>
+    <p>Admin</p>
 <?php endif; ?>
 
 

@@ -18,17 +18,6 @@ Template::header("Activities");
                 <span>Current value: <?= $activity->current_value ?></span> <br>
             </div>
 
-
-            <?php if ($this->user->role === "PT") : ?>
-
-                <p>
-                    <b>User ID: </b>
-                    <?= $activity->user_id ?>
-                </p>
-            <a href="<?= $this->home ?>/activities/<?= $activity->activity_id ?>/edit">Edit</a>
-
-            <?php endif; ?>
-
             <a href="<?= $this->home ?>/activities/<?= $activity->activity_id ?>">Show</a>
         </article>
 

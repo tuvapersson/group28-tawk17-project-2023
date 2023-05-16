@@ -136,21 +136,21 @@ class UsersController extends ControllerBase
     {
         // Path count is 2 meaning the current URL must be "/home/users"
         // Create a user
-        if ($this->path_count == 2) {
-            $this->createUser();
-        }
+        // if ($this->path_count == 2) {
+        //     $this->createUser();
+        // }
 
         // Path count is 4 meaning the current URL must be "/home/users/{SOMETHING1}/{SOMETHING2}"
         // {SOMETHING1} is probably the user_id
         // if {SOMETHING2} is "edit" we will update the user
-        else if ($this->path_count == 4 && $this->path_parts[3] == "edit") {
-            $this->updateUser();
-        }
+        // else if ($this->path_count == 4 && $this->path_parts[3] == "edit") {
+        //     $this->updateUser();
+        // }
 
         // Path count is 4 meaning the current URL must be "/home/users/{SOMETHING1}/{SOMETHING2}"
         // {SOMETHING1} is probably the user_id
         // if {SOMETHING2} is "edit" we will show the edit form
-        else if ($this->path_count == 4 && $this->path_parts[3] == "delete") {
+        if ($this->path_count == 4 && $this->path_parts[3] == "delete") {
             $this->deleteUser();
         }
 
@@ -161,52 +161,52 @@ class UsersController extends ControllerBase
     }
 
 
-    // Create a user with data from the URL and body
-    private function createUser()
-    {
-        $user = new UserModel();
+    // // Create a user with data from the URL and body
+    // private function createUser()
+    // {
+    //     $user = new UserModel();
 
-        // Get updated properties from the body
-        $user->user_name = $this->body["user_name"];
-        $user->password_hash = $this->body["password"];
-        $user->role = $this->body["role"];
-        $user->pt_id = $this->body["pt_id"];
+    //     // Get updated properties from the body
+    //     $user->user_name = $this->body["user_name"];
+    //     $user->password_hash = $this->body["password"];
+    //     $user->role = $this->body["role"];
+    //     $user->pt_id = $this->body["pt_id"];
 
-        // Save the user
-        $success = UsersService::saveUser($user);
+    //     // Save the user
+    //     $success = UsersService::saveUser($user);
 
-        // Redirect or show error based on response from business logic layer
-        if ($success) {
-            $this->redirect($this->home . "/users");
-        } else {
-            $this->error();
-        }
-    }
+    //     // Redirect or show error based on response from business logic layer
+    //     if ($success) {
+    //         $this->redirect($this->home . "/users");
+    //     } else {
+    //         $this->error();
+    //     }
+    // }
 
 
     // Update a user with data from the URL and body
-    private function updateUser()
-    {
-        $user = new UserModel();
+    // private function updateUser()
+    // {
+    //     $user = new UserModel();
 
-        // Get ID from the URL
-        $id = $this->path_parts[2];
+    //     // Get ID from the URL
+    //     $id = $this->path_parts[2];
 
-        // Get updated properties from the body
-        $user->user_name = $this->body["user_name"];
-        $user->password_hash = $this->body["password_hash"];
-        $user->pt_id = $this->body["pt_id"];
+    //     // Get updated properties from the body
+    //     $user->user_name = $this->body["user_name"];
+    //     $user->password_hash = $this->body["password_hash"];
+    //     $user->pt_id = $this->body["pt_id"];
 
-        // Update the user
-        $success = UsersService::updateUserById($id, $user);
+    //     // Update the user
+    //     $success = UsersService::updateUserById($id, $user);
 
-        // Redirect or show error based on response from business logic layer
-        if ($success) {
-            $this->redirect($this->home . "/users");
-        } else {
-            $this->error();
-        }
-    }
+    //     // Redirect or show error based on response from business logic layer
+    //     if ($success) {
+    //         $this->redirect($this->home . "/users");
+    //     } else {
+    //         $this->error();
+    //     }
+    // }
 
 
     // Delete a user with data from the URL

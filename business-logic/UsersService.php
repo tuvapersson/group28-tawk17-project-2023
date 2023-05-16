@@ -66,33 +66,33 @@ class UsersService{
 
     // Save a user to the database by creating a database object 
     // from data-access layer and calling its insert function.
-    public static function saveUser(UserModel $user){
-        $users_database = new UsersDatabase();
+    // public static function saveUser(UserModel $user){
+    //     $users_database = new UsersDatabase();
 
-        // If you need to validate data or control what 
-        // gets saved to the database you can do that here.
-        // This makes sure all input from any presentation
-        // layer will be validated and handled the same way.
+    //     // If you need to validate data or control what 
+    //     // gets saved to the database you can do that here.
+    //     // This makes sure all input from any presentation
+    //     // layer will be validated and handled the same way.
 
-        $success = $users_database->insert($user);
+    //     $success = $users_database->insert($user);
 
-        return $success;
-    }
+    //     return $success;
+    // }
 
-    // Update the user in the database by creating a database object 
-    // from data-access layer and calling its update function.
-    public static function updateUserById($user_id, UserModel $user){
-        $users_database = new UsersDatabase();
+    // // Update the user in the database by creating a database object 
+    // // from data-access layer and calling its update function.
+    // public static function updateUserById($user_id, UserModel $user){
+    //     $users_database = new UsersDatabase();
 
-        // If you need to validate data or control what 
-        // gets saved to the database you can do that here.
-        // This makes sure all input from any presentation
-        // layer will be validated and handled the same way.
+    //     // If you need to validate data or control what 
+    //     // gets saved to the database you can do that here.
+    //     // This makes sure all input from any presentation
+    //     // layer will be validated and handled the same way.
 
-        $success = $users_database->updateById($user_id, $user);
+    //     $success = $users_database->updateById($user_id, $user);
 
-        return $success;
-    }
+    //     return $success;
+    // }
 
     // Delete the user from the database by creating a database object 
     // from data-access layer and calling its delete function.

@@ -118,9 +118,10 @@ class AuthController extends ControllerBase
         $user = new UserModel();
 
         $user->user_name = $this->body["user_name"];
-        $user->role = "Member"; // hard code all new users to regular "user" role
         $password = $this->body["password"];
         $confirm_password = $this->body["confirm_password"];
+        $user->role = $this->body["role"];
+        $user->pt_id = $this->body["pt_id"];
 
         if ($password !== $confirm_password) {
             $this->model["error"] == "Passwords don't match";
@@ -134,7 +135,7 @@ class AuthController extends ControllerBase
             $this->viewPage("auth/register");
         }
 
-        $success = AuthService::registerUser($user, $password);
+        $success = AuthService::registerUser($user, $password, $role, $pt_id);
 
         if ($success) {
             $this->redirect($this->home . "/auth/login");

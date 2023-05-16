@@ -46,23 +46,54 @@ class AuthAPI extends RestAPI
     }
 
 
+    // private function registerUser()
+    // {
+    //     $user = new UserModel();
+
+    //     $user->user_name = $this->body["user_name"];
+    //     $password = $this->body["password"];
+    //     $user->role = $this->body["role"];
+    //     // $user->pt_id = $this->body["pt_id"];
+
+    //     if (!empty($this->body["pt_id"])) {
+    //         $user->pt_id = $this->body["pt_id"];
+    //     } else {
+    //         $user->pt_id = null; // or any other default value you prefer
+    //     }
+
+    //     $success = AuthService::registerUser($user, $password);
+
+    //     if($success){
+    //         $this->created();
+    //     }
+    //     else{
+    //         $this->invalidRequest();
+    //     }
+    // }
     private function registerUser()
-    {
-        $user = new UserModel();
+{
+    $user = new UserModel();
 
-        $user->user_name = $this->body["user_name"];
-        $user->role = "Member"; // hard code all new users to regular "user" role
-        $password = $this->body["password"];
+    $user->user_name = $this->body["user_name"];
+    $password = $this->body["password"];
+    $user->role = $this->body["role"];
 
-        $success = AuthService::registerUser($user, $password);
-
-        if($success){
-            $this->created();
-        }
-        else{
-            $this->invalidRequest();
-        }
+    // Check if pt_id is empty before assigning the value
+    if (!empty($this->body["pt_id"])) {
+        $user->pt_id = $this->body["pt_id"];
+    } else {
+        $user->pt_id = null; // or any other default value you prefer
     }
+
+    $success = AuthService::registerUser($user, $password);
+
+    if ($success) {
+        $this->created();
+    } else {
+        $this->invalidRequest();
+    }
+}
+
 
 
     private function login()
