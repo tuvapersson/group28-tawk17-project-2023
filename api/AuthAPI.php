@@ -82,7 +82,7 @@ class AuthAPI extends RestAPI
     if (!empty($this->body["pt_id"])) {
         $user->pt_id = $this->body["pt_id"];
     } else {
-        $user->pt_id = null; // or any other default value you prefer
+        $user->pt_id = null; 
     }
 
     $success = AuthService::registerUser($user, $password);

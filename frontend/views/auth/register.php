@@ -18,7 +18,7 @@ Template::header("Register user", $this->model["error"]);
     <!-- <input type="number" name="pt_id" placeholder="PT" class="pt-id"> <br> -->
     <label for="pt" class="pt-id">Choose a PT:</label>
     <?php 
-        var_dump($this->model); ?>
+        //var_dump($this->model); ?>
     <select id="pt" name="pt" class="pt-id">
         <?php foreach ($this->model as $user) {
             if ($user->role == "PT") {

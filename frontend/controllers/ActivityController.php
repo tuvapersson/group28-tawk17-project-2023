@@ -22,7 +22,6 @@ class ActivityController extends ControllerBase
         }
 
 
-
         // Path count is 2 meaning the current URL must be "/home/activities"
         // Load start page for activities
         if ($this->path_count == 2) {
@@ -84,7 +83,7 @@ class ActivityController extends ControllerBase
         $activity = $this->getActivity();
 
         // $this->model is used for sending data to the view
-        $this->model = $activity;
+        $this->model["activity"] = $activity;
 
         // Shows the view file activities/single.php
         $this->viewPage("activities/single");
@@ -125,7 +124,7 @@ class ActivityController extends ControllerBase
 
         // Get the activity with the specified ID
         $id = $this->path_parts[2];
-        $activity = ActivitiesService::getActivityByUserId($id);
+        $activity = ActivitiesService::getActivityById($id);
 
         // Show not found if activity doesn't exist
         if ($activity == null) {

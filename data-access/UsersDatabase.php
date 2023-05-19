@@ -111,15 +111,27 @@ class UsersDatabase extends Database
     // Create one by creating a query and using the inherited $this->conn 
     public function insert(UserModel $user)
     {
-        $query = "INSERT INTO users (user_name, password_hash, role, pt_id) VALUES (?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($query);
-
+        $query = "INSERT INTO users (user_name, password_hash, role, pt_id) VALUES (?, ?, ?, ?)";
+        
+        if ($user->pt_id !== null) {
+        
         $stmt->bind_param("sssi", $user->user_name, $user->password_hash, $user->role, $user->pt_id);
 
         $success = $stmt->execute();
 
-        return $success;
+        return $success;  
+
+        } else {
+        $stmt->bind_param("sss", $user->user_name, $user->password_hash, $user->role);
+
+        $success = $stmt->execute();
+
+        return $success;  
+
+        }
+
     }
 
     // Update one by creating a query and using the inherited $this->conn 
