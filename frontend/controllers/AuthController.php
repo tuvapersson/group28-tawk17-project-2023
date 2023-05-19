@@ -63,6 +63,8 @@ class AuthController extends ControllerBase
     private function showProfilePage()
     {
         // Shows the view file auth/register.php
+        $pt = UsersService::getUserById($this->user->pt_id);
+        var_dump($pt);
         $this->viewPage("auth/profile");
     }
 
@@ -111,7 +113,7 @@ class AuthController extends ControllerBase
 
         $_SESSION["user"] = $user;
 
-        $this->redirect($this->home . "/auth/profile");
+        $this->redirect($this->home . "/");
     }
 
 
@@ -123,8 +125,11 @@ class AuthController extends ControllerBase
         $password = $this->body["password"];
         $confirm_password = $this->body["confirm_password"];
         $user->role = $this->body["role"];
-        $user->pt_id = $this->body["pt_id"];
+        
 
+        if (isset($this->body["pt_id"])) {
+            $user->pt_id = $this->body["pt_id"];
+        }
         if ($password !== $confirm_password) {
             $this->model["error"] == "Passwords don't match";
             $this->viewPage("auth/register");
@@ -137,7 +142,7 @@ class AuthController extends ControllerBase
             $this->viewPage("auth/register");
         }
 
-        $success = AuthService::registerUser($user, $password, $role, $pt_id);
+        $success = AuthService::registerUser($user, $password);
 
         if ($success) {
             $this->redirect($this->home . "/auth/login");

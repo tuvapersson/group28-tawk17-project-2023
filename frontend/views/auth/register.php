@@ -16,11 +16,11 @@ Template::header("Register user", $this->model["error"]);
     <input type="radio" id="pt" name="role" value="PT" onclick="hidePtId();">
     <label for="role">PT</label><br>
     <!-- <input type="number" name="pt_id" placeholder="PT" class="pt-id"> <br> -->
-    <label for="admin" class="pt-id-label">Choose an Admin:</label>
-    <select id="admin" name="admin" class="pt-id">
+    <!-- <label for="admin" class="pt-id-label">Choose an Admin:</label> -->
+    <select name="pt_id" class="pt-id">
+    <option value="" disabled selected>Select your PT</option>
         <?php foreach ($this->model["available_admins"] as $user) : ?>
             <option value="<?php echo $user->user_id ?>"><?php echo $user->user_name; ?></option>
-            <option value="hello">hello</option>
         <?php endforeach; ?>
     </select>
     

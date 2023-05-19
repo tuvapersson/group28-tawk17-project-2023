@@ -14,6 +14,7 @@ Template::header($this->model["user"]->user_name);
 <article class="item">
     <div>
         <b><?= $activity->title ?></b> <br>
+        <a href="<?= $this->home ?>/activities/<?= $activity->activity_id ?>">Show</a>
     </div>
 </article>
 

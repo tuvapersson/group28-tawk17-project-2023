@@ -6,7 +6,13 @@ Template::header("Profile");
 
 <p>
     Logged in as <b><?= $this->user->user_name ?></b>
-    PT: <b><?= $this->user->pt_id ?></b>
+    <?php 
+    if ($this->user->role !== "PT" && $this->user->pt_id !== null) :
+    ?>
+    PT: <b><?= $this->model->user_name ?></b>
+    <?php 
+    endif ;
+    ?>
 </p>
 
 <?php if ($this->user->role === "PT") : ?>

@@ -4,7 +4,7 @@ require_once __DIR__ . "/../Template.php";
 Template::header("Home");
 ?>
 
-<h1>Welcome home: <?= $this->home ?></h1>
+<h1>Welcome!</h1>
 
 <p>
     We are delighted to have you visit our website. Here you will find a selection of products and services that we provide.

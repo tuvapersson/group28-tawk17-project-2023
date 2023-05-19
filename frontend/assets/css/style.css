@@ -39,6 +39,7 @@ img {
 
 form {
   margin: 15px 0;
+
 }
 
 input[type=text],
@@ -52,6 +53,7 @@ select {
   margin: 3px 0;
   border-radius: 3px;
   width: 240px;
+
 }
 
 input[type=file] {
@@ -67,8 +69,6 @@ input[type=file] {
 /* -- Header -- */
 
 header {
-  min-height: 300px;
-  height: 35vh;
   background-position: center;
   background-size: cover;
   display: flex;
@@ -77,9 +77,10 @@ header {
 }
 
 header h1 {
-  color: white;
+  color: black;
   font-size: 5em;
-  text-shadow: 3px 3px 6px black;
+  margin-bottom:0px;
+  padding:0px;
 }
 
 
@@ -89,7 +90,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 3px 4px 2px rgb(0 0 0 / 20%)
+  margin-bottom: 50px;
 }
 
 nav a {

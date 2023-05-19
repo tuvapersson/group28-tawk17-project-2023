@@ -1,10 +1,8 @@
 <?php
 require_once __DIR__ . "/../../Template.php";
 
-Template::header("Users");
+Template::header("Clients");
 ?>
-
-<h1>Clients</h1>
 
 <div class="item-grid">
 

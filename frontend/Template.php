@@ -35,6 +35,7 @@ class Template
                     <?php elseif ($user && $user->role == "PT") : ?>
                     <a href="<?= $home_path ?>/auth/profile">Profile</a>
                     <a href="<?= $home_path ?>/users">Clients</a>
+                    <a href="<?= $home_path ?>/explore">Explore</a>
                 <?php else : ?>
                     <a href="<?= $home_path ?>/auth/login">Log in</a>
                 <?php endif; ?>

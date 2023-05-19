@@ -113,8 +113,8 @@ class UsersDatabase extends Database
         $query = "SELECT * FROM users WHERE role = ?";
 
         $stmt = $this->conn->prepare($query);
-        $role = "PT"; // Create a variable to hold the value "PT"
-        $stmt->bind_param("s", $role); // Pass the variable as a reference
+        $role = "PT"; 
+        $stmt->bind_param("s", $role); 
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -131,26 +131,24 @@ class UsersDatabase extends Database
     public function insert(UserModel $user)
     {
 
-        $stmt = $this->conn->prepare($query);
-        $query = "INSERT INTO users (user_name, password_hash, role, pt_id) VALUES (?, ?, ?, ?)";
-
         if ($user->pt_id !== null) {
-        
+        $query = "INSERT INTO users (user_name, password_hash, role, pt_id) VALUES (?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
         $stmt->bind_param("sssi", $user->user_name, $user->password_hash, $user->role, $user->pt_id);
 
         $success = $stmt->execute();
 
-        return $success;  
+
 
         } else {
+        $query = "INSERT INTO users (user_name, password_hash, role) VALUES (?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
         $stmt->bind_param("sss", $user->user_name, $user->password_hash, $user->role);
 
         $success = $stmt->execute();
 
-        return $success;  
-
         }
-
+       return $success;  
     }
 
     // Update one by creating a query and using the inherited $this->conn 

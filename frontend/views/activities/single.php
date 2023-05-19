@@ -1,10 +1,8 @@
 <?php
 require_once __DIR__ . "/../../Template.php";
 
-Template::header($this->model["activity"]->activity_id);
+Template::header($this->model["activity"]->title);
 ?>
-
-<h1><?= $this->model["activity"]->title ?></h1>
 
 <p>
     <b>Id: </b>
@@ -29,15 +27,7 @@ Template::header($this->model["activity"]->activity_id);
     <b>Current value: </b>
     <?= $this->model["activity"]->current_value ?>
 </p>
-
-<?php if ($this->user->role === "PT") : ?>
-
-    <p>
-        <b>User ID: </b>
-        <?= $this->model["user"]->user_id ?>
-    </p>
-
-<?php endif; ?>
+<a href="<?= $this->home ?>/activities/<?= $this->model["activity"]->activity_id ?>/edit">Edit</a>
 
 
 <?php Template::footer(); ?>

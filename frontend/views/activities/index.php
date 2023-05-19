@@ -4,8 +4,6 @@ require_once __DIR__ . "/../../Template.php";
 Template::header("Activities");
 ?>
 
-<h1>Activities</h1>
-
 <a href="<?= $this->home ?>/activities/new">Create new</a>
 
 <div class="item-grid">
