@@ -107,6 +107,25 @@ class UsersDatabase extends Database
 
         return $users; // Return the array of user objects
     }
+    public function getAllByRole()
+    {
+
+        $query = "SELECT * FROM users WHERE role = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $role = "PT"; // Create a variable to hold the value "PT"
+        $stmt->bind_param("s", $role); // Pass the variable as a reference
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $users = array(); // Create an empty array to store the user objects
+
+        while ($user = $result->fetch_object("UserModel")) {
+            $users[] = $user; // Add each user object to the array
+        }
+
+        return $users; // Return the array of user objects
+    }
 
     // Create one by creating a query and using the inherited $this->conn 
     public function insert(UserModel $user)
@@ -114,7 +133,7 @@ class UsersDatabase extends Database
 
         $stmt = $this->conn->prepare($query);
         $query = "INSERT INTO users (user_name, password_hash, role, pt_id) VALUES (?, ?, ?, ?)";
-        
+
         if ($user->pt_id !== null) {
         
         $stmt->bind_param("sssi", $user->user_name, $user->password_hash, $user->role, $user->pt_id);

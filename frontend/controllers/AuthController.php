@@ -54,6 +54,8 @@ class AuthController extends ControllerBase
 
     private function showRegisterForm()
     {
+        //skicka med att pt's.
+        $this->model["available_admins"] = UsersService::getAdmins();
         // Shows the view file auth/register.php
         $this->viewPage("auth/register");
     }

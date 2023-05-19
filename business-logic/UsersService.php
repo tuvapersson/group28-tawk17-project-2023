@@ -24,6 +24,14 @@ class UsersService{
 
         return $user;
     }
+    public static function getAdmins() {
+        $users_database = new UsersDatabase();
+
+        $user = $users_database->getAllByRole();
+
+        return $user;
+    }
+
     public static function getUserByUsername($user_name)
     {
         $users_database = new UsersDatabase();
