@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . "/../../Template.php";
 
-Template::header($this->model["activity"]->title);
+Template::header("Activities");
 ?>
-
+<h1><?= $this->model["activity"]->title ?></h1>
 <p>
     <b>Id: </b>
     <?= $this->model["activity"]->activity_id ?>

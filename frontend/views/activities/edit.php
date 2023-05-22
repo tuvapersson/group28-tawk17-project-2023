@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . "/../../Template.php";
 
-Template::header("Edit " . $this->model->title);
+Template::header("Activities");
 ?>
-
+<h1>Edit Activity</h1>
 <form action="<?= $this->home ?>/activities/<?= $this->model->activity_id ?>/edit" method="post">
     <input type="text" name="title" value="<?= $this->model->title ?>" placeholder="Title"> <br>
     <input type="text" name="date" value="<?= $this->model->date ?>" placeholder="Date"> <br>

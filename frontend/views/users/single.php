@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../Template.php";
 
-Template::header($this->model["user"]->user_name);
+Template::header("Clients");
 ?>
 
 <h1><?= $this->model["user"]->user_name ?></h1>

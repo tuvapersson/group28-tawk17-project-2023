@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../Template.php";
 
-Template::header("New Activity");
+Template::header("Activities");
 ?>
 
 <h1>New Activity</h1>
