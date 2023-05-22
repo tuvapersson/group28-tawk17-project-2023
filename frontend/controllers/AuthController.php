@@ -62,9 +62,17 @@ class AuthController extends ControllerBase
 
     private function showProfilePage()
     {
+        if ($this->user->pt_id !== null) {
+        $user = UsersService::getUserById($this->user->pt_id);
+        $this->model["user"] = $user;
+
+        // // $this->model is used for sending data to the view
+        // $this->model = $user;
+
+        $this->model["user"] = $user;
+        }
         // Shows the view file auth/register.php
-        $pt = UsersService::getUserById($this->user->pt_id);
-        var_dump($pt);
+        
         $this->viewPage("auth/profile");
     }
 

@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;700&display=swap');
+
 * {
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  
 }
 
 html,
@@ -13,19 +17,32 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+background: #ffffff;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f1e5ff, #ffffff);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f1e5ff, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
 img {
   max-width: 100%;
 }
 
 .btn {
   font-weight: 700;
-  padding: 5px 15px;
+  padding: 5px;
+  width: 150px;
   border-radius: 5px;
   cursor: pointer;
-  border: 1px solid gray;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 30px;
 }
+
 
 .delete-btn {
   background-color: red;
@@ -47,17 +64,19 @@ input[type=number],
 input[type=password],
 textarea,
 select {
-  border: 1px solid black;
-  font-size: 1em;
-  padding: 3px;
+  border: 1px solid gray;
+  font-size: 14px;
+  padding: 8.5px;
   margin: 3px 0;
   border-radius: 3px;
-  width: 240px;
-
+  width: 400px;
 }
 
 input[type=file] {
   margin: 10px 0;
+}
+input[type=text]:last-of-type {
+  margin-bottom: 10px;
 }
 
 .error {
@@ -133,20 +152,28 @@ footer {
 /* -- Items -- */
 
 
-main > div ,
+
 .item-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   margin: 20px 0;
+  margin-bottom: 50px;
 }
 
-article.item {
-  width: 25%;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid #e4e4e4;
+article.item{
+  padding: 30px;
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
+}
+.single-container {
+  padding: 30px;
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
 }
 
 article.item b {
@@ -157,11 +184,7 @@ article.item > div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-article.item a,
-article.item a:visited{
-  color: rgb(0, 0, 238);
+  text-align: center;
 }
 
 /* -- Solo item -- */
@@ -179,4 +202,23 @@ div.solo-item img{
 }
 .pt-id-label {
   display: none;
+}
+
+.item-row {
+  margin: 20px 0;
+  padding: 22px;
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+}
+.item-row > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item-row > div > b{
+  font-size: 20px;
+}
+.last-p {
+  margin-bottom: 50px;
 }

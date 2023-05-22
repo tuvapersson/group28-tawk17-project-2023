@@ -13,7 +13,7 @@ Template::header("Clients");
                 <b><?= $user->user_name ?></b> <br>
             </div>
 
-            <a href="<?= $this->home ?>/users/<?= $user->user_id ?>">Show</a>
+            <a href="<?= $this->home ?>/users/<?= $user->user_id ?>"><button class="btn">Show</button></a>
         </article>
 
     <?php endforeach; ?>
