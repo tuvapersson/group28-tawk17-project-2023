@@ -32,7 +32,7 @@ class Template
                 <?php if ($user && $user->role !== "PT") : ?>
                     <a href="<?= $home_path ?>/auth/profile">Profile</a>
                     <a href="<?= $home_path ?>/activities">Activities</a>
-                    <a href="<?= $home_path ?>/explore">Explore</a>
+                    <a href="<?= $home_path ?>/weather">Weather</a>
                     <?php elseif ($user && $user->role == "PT") : ?>
                     <a href="<?= $home_path ?>/auth/profile">Profile</a>
                     <a href="<?= $home_path ?>/users">Clients</a>
