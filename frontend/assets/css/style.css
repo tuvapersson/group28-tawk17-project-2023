@@ -147,6 +147,7 @@ footer {
   color: white;
   font-style: italic;
   font-size: 0.8em;
+  margin-top: 80px;
 }
 
 /* -- Items -- */
@@ -221,4 +222,8 @@ div.solo-item img{
 }
 .last-p {
   margin-bottom: 50px;
+}
+h3 {
+  margin-top: 50px;
+  margin-bottom: 0;
 }
