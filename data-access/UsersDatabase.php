@@ -79,18 +79,6 @@ class UsersDatabase extends Database
     // Get all users by using the inherited function getAllRowsFromTable
     public function getAllById($user_id)
     {
-        // $result = $this->getAllRowsFromTable($this->table_name);
-
-        // $users = [];
-
-        // while ($user = $result->fetch_object("UserModel")) {
-        //     $users[] = $user;
-
-        //     // Never send the password hash unless needed for authentication
-        //     unset($user->password_hash);
-        // }
-
-        // return $users;
 
         $query = "SELECT * FROM users WHERE pt_id = ?";
 
@@ -151,32 +139,6 @@ class UsersDatabase extends Database
        return $success;  
     }
 
-    // Update one by creating a query and using the inherited $this->conn 
-    // public function updateById($user_id, UserModel $user)
-    // {
-    //     $query = "UPDATE users SET user_name=?, pt_id=? WHERE user_id=?;";
-
-    //     $stmt = $this->conn->prepare($query);
-
-    //     $stmt->bind_param("sii", $user->user_name, $user->pt_id, $user_id);
-
-    //     $success = $stmt->execute();
-
-    //     return $success;
-    // }
-
-    // public function updatePasswordById($user_id, $password_hash)
-    // {
-    //     $query = "UPDATE users SET password_hash=? WHERE user_id=?;";
-
-    //     $stmt = $this->conn->prepare($query);
-
-    //     $stmt->bind_param("si", $password_hash, $user_id);
-
-    //     $success = $stmt->execute();
-
-    //     return $success;
-    // }
 
     // Delete one user by using the inherited function deleteOneRowByIdFromTable
     public function deleteById($user_id)

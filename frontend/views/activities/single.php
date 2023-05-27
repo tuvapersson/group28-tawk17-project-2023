@@ -28,7 +28,9 @@ Template::header("Activities");
     <b>Current value: </b>
     <?= $this->model["activity"]->current_value ?>
 </p>
+<?php if ($this->user->role !== "PT") { ?>
 <a href="<?= $this->home ?>/activities/<?= $this->model["activity"]->activity_id ?>/edit"><button class="btn">Edit</button></a>
+<?php } ?>
 </div>
 
 

@@ -7,6 +7,8 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 
 require_once __DIR__ . "/../business-logic/AuthService.php";
 require_once __DIR__ . "/../business-logic/UsersService.php";
+require_once __DIR__ . "/../business-logic/ActivitiesService.php";
+require_once __DIR__ . "/../business-logic/WeatherService.php";
 
 // Base class for all API classes to inherit from.
 // Includes functions for sending response as JSON

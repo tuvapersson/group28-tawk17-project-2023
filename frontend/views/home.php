@@ -3,7 +3,7 @@ require_once __DIR__ . "/../Template.php";
 
 Template::header("Home");
 ?>
-<?php if ($this->user->role !== "PT") { ?>
+<?php if (!$this->user || !isset($this->user->role) || $this->user->role !== "PT") { ?>
 
 <h1>Your Fitness Journey Starts Here</h1>
 

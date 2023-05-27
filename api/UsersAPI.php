@@ -87,47 +87,6 @@ class UsersAPI extends RestAPI
         }
     }
 
-    // Gets the contents of the body and saves it as a user by 
-    // inserting it in the database.
-    // private function postOne()
-    // {
-    //     $user = new UserModel();
-
-    //     $user->user_name = $this->body["user_name"];
-    //     $user->password = $this->body["password"];
-    //     $user->role = $this->body["role"];
-    //     $user->pt_id = $this->body["pt_id"];
-
-    //     $success = UsersService::saveUser($user);
-
-    //     if($success){
-    //         $this->created();
-    //     }
-    //     else{
-    //         $this->error();
-    //     }
-    // }
-
-    // Gets the contents of the body and updates the user
-    // by sending it to the DB
-    // private function putOne($id)
-    // {
-    //     $user = new UserModel();
-
-    //     $user->user_name = $this->body["user_name"];
-    //     $user->password = $this->body["password"];
-    //     $user->pt_id = $this->body["pt_id"];
-
-    //     $success = UsersService::updateUserById($id, $user);
-
-    //     if($success){
-    //         $this->ok();
-    //     }
-    //     else{
-    //         $this->error();
-    //     }
-    // }
-
     // Deletes the user with the specified ID in the DB
     private function deleteOne($id)
     {
