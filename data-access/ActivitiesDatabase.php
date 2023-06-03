@@ -15,7 +15,6 @@ class ActivitiesDatabase extends Database
     private $table_name = "activities";
     private $id_name = "activity_id";
 
-    // Get one activity by using the inherited function getOneRowByIdFromTable
     public function getOne($activity_id)
     {
         $result = $this->getOneRowByIdFromTable($this->table_name, $this->id_name, $activity_id);
@@ -25,8 +24,6 @@ class ActivitiesDatabase extends Database
         return $activity;
     }
 
-
-    // Get all activities by using the inherited function getAllRowsFromTable
     public function getAll()
     {
         $result = $this->getAllRowsFromTable($this->table_name);
@@ -59,7 +56,6 @@ class ActivitiesDatabase extends Database
         
     }
 
-    // Create one by creating a query and using the inherited $this->conn 
     public function insert(ActivityModel $activity)
     {
         $query = "INSERT INTO activities (title, date, description, start_value, current_value, user_id) VALUES (?, ?, ?, ?, ?, ?)";
@@ -72,8 +68,7 @@ class ActivitiesDatabase extends Database
 
         return $success;
     }
-
-    // Update one by creating a query and using the inherited $this->conn 
+ 
     public function updateById($activity_id, ActivityModel $activity)
     {
         $query = "UPDATE activities SET title=?, date=?, description=?, start_value=?, current_value=? WHERE activity_id=?;";
@@ -86,7 +81,6 @@ class ActivitiesDatabase extends Database
         return $success;
     }
 
-    // Delete one activity by using the inherited function deleteOneRowByIdFromTable
     public function deleteById($activity_id)
     {
         $success = $this->deleteOneRowByIdFromTable($this->table_name, $this->id_name, $activity_id);

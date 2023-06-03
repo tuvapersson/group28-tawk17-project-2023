@@ -15,8 +15,6 @@ class UsersDatabase extends Database
     private $table_name = "users";
     private $id_name = "user_id";
 
-    // Get one user by using the inherited function getOneRowByIdFromTable
-    // Never send the password hash unless needed for authentication
     public function getByUsername($user_name)
     {
         $user = $this->getByUsernameWithPassword($user_name);
@@ -28,8 +26,6 @@ class UsersDatabase extends Database
         return $user;
     }
 
-    // Get one user by using the inherited function getOneRowByIdFromTable
-    // Never send the password hash unless needed for authentication
     public function getByUsernameWithPassword($user_name)
     {
         // Define SQL query to retrieve user data by user_name
@@ -54,8 +50,6 @@ class UsersDatabase extends Database
         return $user;
     }
 
-    // Get one user by using the inherited function getOneRowByIdFromTable
-    // Never send the password hash unless needed for authentication
     public function getByIdWithPassword($user_id)
     {
         $result = $this->getOneRowByIdFromTable($this->table_name, $this->id_name, $user_id);
@@ -65,7 +59,6 @@ class UsersDatabase extends Database
         return $user;
     }
 
-    // Get one user by using the inherited function getOneRowByIdFromTable
     public function getOne($user_id)
     {
         $result = $this->getOneRowByIdFromTable($this->table_name, $this->id_name, $user_id);
@@ -75,8 +68,6 @@ class UsersDatabase extends Database
         return $user;
     }
 
-
-    // Get all users by using the inherited function getAllRowsFromTable
     public function getAllById($user_id)
     {
 
@@ -115,7 +106,6 @@ class UsersDatabase extends Database
         return $users; // Return the array of user objects
     }
 
-    // Create one by creating a query and using the inherited $this->conn 
     public function insert(UserModel $user)
     {
 
@@ -138,9 +128,7 @@ class UsersDatabase extends Database
         }
        return $success;  
     }
-
-
-    // Delete one user by using the inherited function deleteOneRowByIdFromTable
+    
     public function deleteById($user_id)
     {
         $success = $this->deleteOneRowByIdFromTable($this->table_name, $this->id_name, $user_id);

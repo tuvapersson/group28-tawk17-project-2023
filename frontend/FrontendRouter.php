@@ -30,8 +30,6 @@ class FrontendRouter
         // Available routes
         // Add to this if you need to add any route to the API
         $this->routes = [
-            // Whenever someone calls "home/users" we 
-            // will load the CustomerPages class
             "home" => "HomeController",
             "auth" => "AuthController",
             "users" => "UsersController",
@@ -48,10 +46,6 @@ class FrontendRouter
 
     public function handleRequest()
     {
-
-        // Load home page if no resource is specified
-        // (the "resource" is the second part of the URL path)
-        // ( {BASE_URL}/home/{RESOURCE} )
         $resource = "home";
         $route_class = $this->routes[$resource];
         $request_info = [];

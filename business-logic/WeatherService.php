@@ -14,8 +14,6 @@ class WeatherService{
 
         $weather = $weather_fetcher->getCityWeather($city);
 
-        // $temp = isset($city_data["temp"]) ? $city_data["temp"] : "";
-
         return $weather;
     }
 

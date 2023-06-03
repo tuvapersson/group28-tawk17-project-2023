@@ -15,8 +15,6 @@ Template::header("Register user", $this->model["error"]);
     <label for="role">Member</label>
     <input type="radio" id="pt" name="role" value="PT" onclick="hidePtId();">
     <label for="role">PT</label><br>
-    <!-- <input type="number" name="pt_id" placeholder="PT" class="pt-id"> <br> -->
-    <!-- <label for="admin" class="pt-id-label">Choose an Admin:</label> -->
     <select name="pt_id" class="pt-id">
     <option value="" disabled selected>Select your PT (optional)</option>
         <?php foreach ($this->model["available_admins"] as $user) : ?>

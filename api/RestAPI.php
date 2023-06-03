@@ -10,19 +10,12 @@ require_once __DIR__ . "/../business-logic/UsersService.php";
 require_once __DIR__ . "/../business-logic/ActivitiesService.php";
 require_once __DIR__ . "/../business-logic/WeatherService.php";
 
-// Base class for all API classes to inherit from.
-// Includes functions for sending response as JSON
-// as well as parsing the request.
-
 class RestAPI
 {
 
     protected $path_parts, $path_count, $query_params, $method, $headers, $body;
     protected $user = false;
 
-    // Gets data from the url and sets the protected properties
-    // so that any class inheriting from this can read and handle
-    // the request appropriately
     public function __construct($path_parts, $query_params)
     {
         
@@ -31,17 +24,13 @@ class RestAPI
         $this->method = $_SERVER["REQUEST_METHOD"];
         $this->headers = getallheaders();
         $this->query_params = $query_params;
-        // Count the number of "parts" in the path
-        // Example: "api/Customers" is 2 parts and
-        // "api/Customers/5" is 3 parts
+
         $this->path_count = count($this->path_parts);
 
         $this->parseBody();
         $this->setUser();
     }
 
-    // Sends the content of $response as JSON and ends execution
-    // $status is the status code to send (200 is default and means "OK") 
     protected function sendJson($response, $status = 200)
     {
         http_response_code($status);

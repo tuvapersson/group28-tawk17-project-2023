@@ -16,40 +16,18 @@ class ActivitiesAPI extends RestAPI
     // Handles the request by calling the appropriate member function
     public function handleRequest()
     {
-        
-        
-        // If theres two parts in the path and the request method is GET 
-        // it means that the client is requesting "api/Activities" and
-        // we should respond by returning a list of all activities 
         if ($this->method == "GET" && $this->path_count == 2) {
             $this->getAll();
         } 
-
-        // If there's three parts in the path and the request method is GET
-        // it means that the client is requesting "api/Activities/{something}".
-        // In our API the last part ({something}) should contain the ID of a 
-        // activity and we should respond with the activity of that ID
         else if ($this->path_count == 3 && $this->method == "GET") {
             $this->getById($this->path_parts[2]);
         }
-
-        // If theres two parts in the path and the request method is POST 
-        // it means that the client is requesting "api/Activities" and we
-        // should get ths contents of the body and create a activity.
         else if ($this->path_count == 2 && $this->method == "POST") {
             $this->postOne();
         }
-
-        // If theres two parts in the path and the request method is PUT 
-        // it means that the client is requesting "api/Activities/{something}" and we
-        // should get the contents of the body and update the activity.
         else if ($this->path_count == 3 && $this->method == "PUT") {
             $this->putOne($this->path_parts[2]);
-        } 
-
-        // If theres two parts in the path and the request method is DELETE 
-        // it means that the client is requesting "api/Activities/{something}" and we
-        // should get the ID from the URL and delete that activity.
+        }
         else if ($this->path_count == 3 && $this->method == "DELETE") {
             $this->deleteOne($this->path_parts[2]);
         } 
@@ -78,7 +56,6 @@ class ActivitiesAPI extends RestAPI
         $this->requireAuth();
         $activities = ActivitiesService::getActivitiesByUserId();
 
-        // $this->sendJson($activities);
         if ($activities) {
             $this->sendJson($activities);
         }
@@ -86,8 +63,6 @@ class ActivitiesAPI extends RestAPI
             $this->notFound();
         }
     }
-
-    // Gets one and sends it to the client as JSON
 
     private function getById($id)
     {
@@ -106,9 +81,6 @@ class ActivitiesAPI extends RestAPI
         $this->sendJson($activity);
     }
 
-
-    // Gets the contents of the body and saves it as a activity by 
-    // inserting it in the database.
     private function postOne()
     {
         $this->requireAuth();
@@ -122,12 +94,10 @@ class ActivitiesAPI extends RestAPI
         $activity->current_value = $this->body["current_value"];
         $activity->user_id = $this->body["user_id"];
 
-        // Admins can connect any user to the activity
         if($this->user->user_role === "PT"){
             $activity->user_id = $this->body["user_id"];
         }
 
-        // Regular users can only add activitys to themself
         else{
             $activity->user_id = $this->user->user_id;
         }
@@ -142,8 +112,6 @@ class ActivitiesAPI extends RestAPI
         }
     }
 
-    // Gets the contents of the body and updates the activity
-    // by sending it to the DB
     private function putOne($id)
     {
         $this->requireAuth();
@@ -157,12 +125,10 @@ class ActivitiesAPI extends RestAPI
         $activity->current_value = $this->body["current_value"];
         $activity->user_id = $this->body["user_id"];
 
-        // Admins can connect any user to the purchase
         if($this->user->role === "PT"){
             $purchase->user_id = $this->body["user_id"];
         }
 
-        // Regular users can only add purchases to themself
         else{
             $purchase->user_id = $this->user->user_id;
         }
@@ -177,10 +143,8 @@ class ActivitiesAPI extends RestAPI
         }
     }
 
-    // Deletes the activity with the specified ID in the DB
     private function deleteOne($id)
     {
-        // only admins can delete purchases
         $this->requireAuth();
 
         $activity = ActivitiesService::getActivityById($id);
